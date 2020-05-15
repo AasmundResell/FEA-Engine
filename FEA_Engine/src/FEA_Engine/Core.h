@@ -11,3 +11,7 @@
 #else
 	#error Wrong platform, only windows compatible
 #endif
+
+//defines 1 shifted by x-places, ie BIT(1) is 1
+//Uses this to define several category types for each instance
+#define BIT(x) (1 << x) 

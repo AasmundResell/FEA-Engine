@@ -1,0 +1,3 @@
+[submodule "FEA_Engine/vendor/spdlog"]
+	path = FEA_Engine/vendor/spdlog
+	url = https://github.com/gabime/spdlog

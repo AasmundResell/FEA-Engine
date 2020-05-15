@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Events\Event.h"
 
 namespace FEE {
 
@@ -13,6 +14,6 @@ namespace FEE {
 		void run();
 	};
 	
-	//this is to be defined in an application
+	//this needs to be defined in the application
 	Application* CreateApplication();
 }

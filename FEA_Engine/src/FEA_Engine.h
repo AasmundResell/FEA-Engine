@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "FEA_Engine/Application.h"
+#include "FEA_Engine/Log.h"
 
 //------EntryPoint------------------
 #include "FEA_Engine\EntryPoint.h"
