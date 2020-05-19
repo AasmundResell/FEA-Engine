@@ -1,10 +1,8 @@
 #pragma once
 
+#include "feepch.h"
+
 #include "FEA_Engine/Core.h"
-
-#include <string>
-#include <functional>
-
 
 namespace FEE {
 
@@ -56,7 +54,7 @@ namespace FEE {
 			
 		}
 		//Need to check if an event has been handled or not
-		bool m_Handled = false;
+		bool Handled = false;
 	};
 
 	
@@ -75,7 +73,7 @@ namespace FEE {
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
 				//If match will call the event function with the event(?)
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;	
 			}
 			return false;

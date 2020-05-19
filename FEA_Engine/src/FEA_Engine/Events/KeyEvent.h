@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include <sstream>
 
 namespace FEE {
 
@@ -11,7 +10,7 @@ namespace FEE {
 	class FEE_API KeyEvent : public Event
 	{
 	public:
-		inline GetKeyCode() const { return m_keyCode };
+		inline int GetKeyCode() const { return m_keyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
@@ -28,7 +27,7 @@ namespace FEE {
 		KeyPressedEvent(int keyCode, int repeatCount)
 			: KeyEvent(keyCode), m_keyRepeatCount(repeatCount) {}
 
-		inline int GetRepeatCount() const { return m_keyRepeatCount };
+		inline int GetRepeatCount() const { return m_keyRepeatCount; }
 
 		std::string ToString() const override
 		{

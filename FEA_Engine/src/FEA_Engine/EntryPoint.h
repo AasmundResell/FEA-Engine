@@ -4,7 +4,6 @@
 
 //extern specifies that the symbol has external linkage
 //this pointer lets us call CreateApplication from an application
-
 extern FEE::Application* FEE::CreateApplication();
 
 //main loop	

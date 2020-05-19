@@ -1,7 +1,5 @@
 #pragma once
 
-#include <sstream>
-
 #include "Event.h"
 
 namespace FEE {
@@ -43,6 +41,7 @@ namespace FEE {
 		{
 			std::stringstream ss;
 			ss << "MouseScrolledEvent: " << GetOffsetX() << ", " << GetOffsetY();
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(MouseScrolled)

@@ -10,6 +10,14 @@ workspace "FEA_Engine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {} 
+IncludeDir["GLFW"] = "FEA_Engine/vendor/GLFW/include"
+IncludeDir["Glad"] = "FEA_Engine/vendor/Glad/include"
+
+include "FEA_Engine/vendor/GLFW"	
+include "FEA_Engine/vendor/Glad"	
+
 project "FEA_Engine"
     location "FEA_Engine"
     kind "SharedLib"
@@ -17,6 +25,9 @@ project "FEA_Engine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    pchheader "feepch.h"
+    pchsource "FEA_Engine/src/feepch.cpp"
 
     files
     {
@@ -27,9 +38,18 @@ project "FEA_Engine"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}"
     }
 
+    links
+    {
+        "GLFW",
+        "Glad",
+        "opengl32.lib"
+    }
+ 
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
@@ -38,7 +58,8 @@ project "FEA_Engine"
         defines
         {
             "FEE_PLATFORM_WINDOWS",
-            "FEE_BUILD_DLL"
+            "FEE_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -48,14 +69,17 @@ project "FEA_Engine"
 
     filter "configurations:Debug"
         defines "FEE_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "FEE_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "FEE_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
@@ -95,12 +119,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "FEE_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "FEE_RELEASE"
+        buildoptions "/MD"
         optimize "On"
  
     filter "configurations:Dist"
         defines "FEE_DIST"
+        buildoptions "/MD"
         optimize "On"

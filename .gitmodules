@@ -1,3 +1,6 @@
 [submodule "FEA_Engine/vendor/spdlog"]
 	path = FEA_Engine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "FEA_Engine/vendor/GLFW"]
+	path = FEA_Engine/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW
