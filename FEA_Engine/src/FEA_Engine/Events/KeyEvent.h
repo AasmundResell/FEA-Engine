@@ -4,7 +4,6 @@
 
 namespace FEE {
 
-	
 
 	//this is an abstract class
 	class FEE_API KeyEvent : public Event
@@ -31,7 +30,7 @@ namespace FEE {
 
 		std::string ToString() const override
 		{
-			//needs to check number of key values regarding the timeintervall of the push
+			//needs to check number of key values regarding the time intervall of the push
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_keyCode << " (" << m_keyRepeatCount << " repeats)";
 			return ss.str();
@@ -58,4 +57,24 @@ namespace FEE {
 
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
+	class FEE_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keyCode)
+			: KeyEvent(keyCode) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_keyCode;
+			return ss.str();
+		}
+
+		//use this macro to be simplify the use of common Event functions
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
+
+
 }
+

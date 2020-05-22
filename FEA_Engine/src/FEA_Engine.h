@@ -4,6 +4,8 @@
 #include "FEA_Engine/Application.h"
 #include "FEA_Engine/Layer.h"
 #include "FEA_Engine/Log.h"
+#include "FEA_Engine/ImGui/ImGuiLayer.h"
+
 
 //------EntryPoint------------------
 #include "FEA_Engine\EntryPoint.h"

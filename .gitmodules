@@ -4,3 +4,6 @@
 [submodule "FEA_Engine/vendor/GLFW"]
 	path = FEA_Engine/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
+[submodule "FEA_Engine/vendor/imgui"]
+	path = FEA_Engine/vendor/imgui
+	url = https://github.com/TheCherno/imgui

@@ -7,11 +7,18 @@
 
 namespace FEE {
 
-	#define  BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+#define  BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	Application* Application::s_Instance = nullptr;
+
+	//this constructor will be called when the inherited  application class is created?? ie Sandbox()
 	Application::Application()
 	{
+		FEE_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
+
+		//this is where the event dispatcher is called???
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
@@ -45,12 +52,13 @@ namespace FEE {
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			//iterate trough the layers in the stack
+			//iterate and update layers in the stack
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
 
+			//update the window class
 			m_Window->OnUpdate();
 		}
 	}
@@ -64,10 +72,12 @@ namespace FEE {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 }

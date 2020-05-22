@@ -14,14 +14,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {} 
 IncludeDir["GLFW"] = "FEA_Engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "FEA_Engine/vendor/Glad/include"
+IncludeDir["ImGui"] = "FEA_Engine/vendor/imgui"
 
 include "FEA_Engine/vendor/GLFW"	
-include "FEA_Engine/vendor/Glad"	
+include "FEA_Engine/vendor/Glad"
+include "FEA_Engine/vendor/imgui"
 
 project "FEA_Engine"
     location "FEA_Engine"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,19 +43,20 @@ project "FEA_Engine"
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}", 
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
         "Glad",
+        "ImGui",
         "opengl32.lib"
     }
  
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -69,23 +73,25 @@ project "FEA_Engine"
 
     filter "configurations:Debug"
         defines "FEE_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "FEE_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "FEE_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
+
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -109,7 +115,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -119,15 +124,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "FEE_DEBUG"
-        buildoptions "/MDd"
-        symbols "On"
+       runtime "Debug"
+       symbols "On"
 
     filter "configurations:Release"
         defines "FEE_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
  
     filter "configurations:Dist"
         defines "FEE_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"

@@ -9,7 +9,7 @@ public:
 
 	void OnUpdate() override
 	{
-		FEE_INFO("ExampleLayer::Update");
+		//FEE_INFO("ExampleLayer::Update");
 	}
 	
 	void OnEvent(FEE::Event& event) override
@@ -24,6 +24,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer()); 
+		PushLayer(new FEE::ImGuiLayer());
 	}
 
 	~Sandbox()

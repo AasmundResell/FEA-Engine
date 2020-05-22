@@ -24,11 +24,13 @@ namespace FEE {
 
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
+		//puts overlay in the back
 		m_Layers.emplace_back(overlay);
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
 	{
+		//removes the given layer
 		auto it = std::find(m_Layers.begin(), m_Layers.end(), layer);
 		if (it != m_Layers.end())
 		{
@@ -39,6 +41,7 @@ namespace FEE {
 
 	void LayerStack::PopOverlay(Layer* overlay)
 	{
+		//removes the given overlay
 		auto it = std::find(m_Layers.begin(), m_Layers.end(), overlay);
 		if (it != m_Layers.end())
 		{

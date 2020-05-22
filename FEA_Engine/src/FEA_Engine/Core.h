@@ -12,6 +12,10 @@
 	#error Wrong platform, only windows compatible
 #endif
 
+#ifdef FEE_DEBUG
+	#define FEE_ENABLE_ASSERTS
+#endif
+
 #ifdef FEE_ENABLE_ASSERTS
 	#define FEE_ASSERT(x, ...) {if(!(x)) { FEE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define FEE_CORE_ASSERT(x, ...) {if(!(x)) { FEE_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
@@ -19,6 +23,8 @@
 	#define FEE_ASSERT(x, ...) 
 	#define FEE_CORE_ASSERT(x, ...)
 #endif
+
+#define FEE_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 //defines 1 shifted by x-places, ie BIT(1) is 1
 //Uses this to define several category types for each instance
