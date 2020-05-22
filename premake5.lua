@@ -1,5 +1,6 @@
 workspace "FEA_Engine"
     architecture "x64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -19,6 +20,7 @@ IncludeDir["ImGui"] = "FEA_Engine/vendor/imgui"
 include "FEA_Engine/vendor/GLFW"	
 include "FEA_Engine/vendor/Glad"
 include "FEA_Engine/vendor/imgui"
+
 
 project "FEA_Engine"
     location "FEA_Engine"
