@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "FEA_Engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "FEA_Engine/vendor/Glad/include"
 IncludeDir["ImGui"] = "FEA_Engine/vendor/imgui"
+IncludeDir["glm"] = "FEA_Engine/vendor/glm"
 
 group "Dependencies"
     include "FEA_Engine/vendor/GLFW"	
@@ -38,7 +39,9 @@ project "FEA_Engine"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        "%{prj.name}/vendor/glm/glm/**.inl"
     }
 
     includedirs
@@ -47,7 +50,8 @@ project "FEA_Engine"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}", 
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -108,7 +112,8 @@ project "Sandbox"
     includedirs
     {
         "FEA_Engine/vendor/spdlog/include",
-        "FEA_Engine/src"
+        "FEA_Engine/src",
+        "%{IncludeDir.glm}"
     }
 
     links

@@ -1,11 +1,12 @@
 #include "FEA_Engine.h"
 
-
 class ExampleLayer : public FEE::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example") {}
+		: Layer("Example") 
+	{
+	}
 
 	void OnUpdate() override
 	{
@@ -28,7 +29,7 @@ class Sandbox : public FEE::Application
 public: 
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer()); 
+		PushLayer(new ExampleLayer());
 		PushLayer(new FEE::ImGuiLayer());
 	}
 
