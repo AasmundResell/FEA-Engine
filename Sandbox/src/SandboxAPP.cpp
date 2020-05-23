@@ -10,11 +10,16 @@ public:
 	void OnUpdate() override
 	{
 		//FEE_INFO("ExampleLayer::Update");
+		
+		if (FEE::Input::IsKeyPressed(FEE_KEY_TAB)) {
+			FEE_INFO("Tab is pressed!");
+		}
+
 	}
 	
 	void OnEvent(FEE::Event& event) override
 	{
-		FEE_TRACE("{0}",event);
+		//FEE_TRACE("{0}",event);
 	}
 };
 

@@ -2,6 +2,8 @@
 
 #include "FEA_Engine/Application.h"
 #include "FEA_Engine/Log.h"
+#include "Input.h"
+
 
 #include "glad/glad.h"
 
@@ -57,6 +59,8 @@ namespace FEE {
 			{
 				layer->OnUpdate();
 			}
+
+			
 
 			//update the window class
 			m_Window->OnUpdate();

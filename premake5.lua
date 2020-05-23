@@ -17,10 +17,11 @@ IncludeDir["GLFW"] = "FEA_Engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "FEA_Engine/vendor/Glad/include"
 IncludeDir["ImGui"] = "FEA_Engine/vendor/imgui"
 
-include "FEA_Engine/vendor/GLFW"	
-include "FEA_Engine/vendor/Glad"
-include "FEA_Engine/vendor/imgui"
-
+group "Dependencies"
+    include "FEA_Engine/vendor/GLFW"	
+    include "FEA_Engine/vendor/Glad"
+    include "FEA_Engine/vendor/imgui"
+group ""
 
 project "FEA_Engine"
     location "FEA_Engine"
@@ -70,10 +71,10 @@ project "FEA_Engine"
 
         postbuildcommands
         {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
 
-    filter "configurations:Debug"
+    filter "configurations:Debug" 
         defines "FEE_DEBUG"
         runtime "Debug"
         symbols "On"
