@@ -5,7 +5,7 @@ namespace FEE {
 
 	LayerStack::LayerStack()
 	{
-		m_LayerInsert = m_Layers.begin();
+	
 	}
 
 	LayerStack::~LayerStack()
@@ -18,8 +18,9 @@ namespace FEE {
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		//layer insert specifies where the layer is pushed
-		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayersInsertIndex, layer);
+		m_LayersInsertIndex++;
+	
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
@@ -35,7 +36,7 @@ namespace FEE {
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
-			m_LayerInsert--;
+			m_LayersInsertIndex--;
 		}
 	}
 

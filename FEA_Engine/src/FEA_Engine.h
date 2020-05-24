@@ -12,6 +12,6 @@
 #include "FEA_Engine/ImGui/ImGuiLayer.h"
 
 //------EntryPoint------------------
-#include "FEA_Engine\EntryPoint.h"
+#include "FEA_Engine/EntryPoint.h"
 //----------------------------------
  

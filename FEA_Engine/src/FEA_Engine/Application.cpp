@@ -1,11 +1,12 @@
 #include "feepch.h"
 
-#include "FEA_Engine/Application.h"
+#include "Application.h"
+
 #include "FEA_Engine/Log.h"
+
 #include "Input.h"
 
-
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace FEE {
 
@@ -22,6 +23,10 @@ namespace FEE {
 
 		//this is where the event dispatcher is called???
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
@@ -60,7 +65,14 @@ namespace FEE {
 				layer->OnUpdate();
 			}
 
-			
+			//start rendering of the ImGui layer
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			//end Imgui
+			m_ImGuiLayer->End();
 
 			//update the window class
 			m_Window->OnUpdate();

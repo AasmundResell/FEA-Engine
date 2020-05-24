@@ -5,8 +5,9 @@
 #include "FEA_Engine/Events/ApplicationEvent.h"
 #include "FEA_Engine/Window.h"
 
-#include "FEA_Engine/Layer.h"
 #include "FEA_Engine/LayerStack.h"
+
+#include "FEA_Engine/ImGui/ImGuiLayer.h"
 
 namespace FEE {
 
@@ -28,8 +29,12 @@ namespace FEE {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e); 
-
+		
 		std::unique_ptr<Window> m_Window;
+
+		//want to have ImGui automatically part of the application an not something the game controls
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

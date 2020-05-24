@@ -1,5 +1,7 @@
 #include "FEA_Engine.h"
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public FEE::Layer
 {
 public:
@@ -17,6 +19,13 @@ public:
 		}
 
 	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
 	
 	void OnEvent(FEE::Event& event) override
 	{
@@ -30,7 +39,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new FEE::ImGuiLayer());
 	}
 
 	~Sandbox()
