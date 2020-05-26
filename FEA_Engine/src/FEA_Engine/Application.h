@@ -9,6 +9,9 @@
 
 #include "FEA_Engine/ImGui/ImGuiLayer.h"
 
+#include "FEA_Engine/Renderer/Shader.h"
+#include "FEA_Engine/Renderer/Buffer.h"
+
 namespace FEE {
 
 	class FEE_API Application
@@ -37,6 +40,13 @@ namespace FEE {
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray;
+
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+
 	private:
 		static Application* s_Instance;
 	};

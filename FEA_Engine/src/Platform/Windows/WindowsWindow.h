@@ -1,8 +1,10 @@
 #pragma once
 
 #include "FEA_Engine\Window.h"
+#include "FEA_Engine/Renderer/GraphicsContext.h"
 
 #include <GLFW\glfw3.h>
+
 
 namespace FEE {
 
@@ -29,6 +31,9 @@ namespace FEE {
 		
 		
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
+
+
 
 		//Can pass this struct to the GLFW event callback instead of the whole class	
 		struct WindowData
