@@ -11,6 +11,7 @@
 
 #include "FEA_Engine/Renderer/Shader.h"
 #include "FEA_Engine/Renderer/Buffer.h"
+#include "FEA_Engine/Renderer/VertexArray.h"
 
 namespace FEE {
 
@@ -41,11 +42,13 @@ namespace FEE {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
+		//drawing triangle
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
 
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		//drawing square
+		std::shared_ptr<Shader> m_Shader2;
+		std::shared_ptr<VertexArray> m_SquareVertexArray;
 
 	private:
 		static Application* s_Instance;
