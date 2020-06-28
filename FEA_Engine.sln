@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "FEA_Engine\vendor\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FEA_Engine", "FEA_Engine\FEA_Engine.vcxproj", "{665FA4EC-5217-E639-BB1E-BF95A7F5802A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FEA_Solver", "FEA_Solver\FEA_Solver.vcxproj", "{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -50,6 +52,12 @@ Global
 		{665FA4EC-5217-E639-BB1E-BF95A7F5802A}.Dist|x64.Build.0 = Dist|x64
 		{665FA4EC-5217-E639-BB1E-BF95A7F5802A}.Release|x64.ActiveCfg = Release|x64
 		{665FA4EC-5217-E639-BB1E-BF95A7F5802A}.Release|x64.Build.0 = Release|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Debug|x64.ActiveCfg = Debug|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Debug|x64.Build.0 = Debug|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Dist|x64.ActiveCfg = Dist|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Dist|x64.Build.0 = Dist|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Release|x64.ActiveCfg = Release|x64
+		{CBA4610D-B75C-A35A-2064-7CB60C3B3E4B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

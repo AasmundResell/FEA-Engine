@@ -11,6 +11,19 @@
 
 #include "FEA_Engine/ImGui/ImGuiLayer.h"
 
+#include "FEA_Engine/Core/Timestep.h"
+//------Renderer--------------------
+#include "FEA_Engine/Renderer/Renderer.h"
+#include "FEA_Engine/Renderer/RenderCommand.h"
+
+#include "FEA_Engine/Renderer/Texture.h"
+#include "FEA_Engine/Renderer/Buffer.h"
+#include "FEA_Engine/Renderer/Shader.h"
+#include "FEA_Engine/Renderer/VertexArray.h"
+//----------------------------------
+
+#include "FEA_Engine/Renderer/OrthographicCamera.h"
+
 //------EntryPoint------------------
 #include "FEA_Engine/EntryPoint.h"
 //----------------------------------

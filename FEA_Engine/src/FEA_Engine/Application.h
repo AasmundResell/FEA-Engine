@@ -5,20 +5,19 @@
 #include "FEA_Engine/Events/ApplicationEvent.h"
 #include "FEA_Engine/Window.h"
 
+#include "FEA_Engine/Core/Timestep.h"
+
 #include "FEA_Engine/LayerStack.h"
 
 #include "FEA_Engine/ImGui/ImGuiLayer.h"
 
-#include "FEA_Engine/Renderer/Shader.h"
-#include "FEA_Engine/Renderer/Buffer.h"
-#include "FEA_Engine/Renderer/VertexArray.h"
 
 namespace FEE {
 
-	class FEE_API Application
+	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "FEA App");
 		virtual ~Application();
 		
 		void run();
@@ -41,14 +40,8 @@ namespace FEE {
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 
-		//drawing triangle
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		//drawing square
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
 
 	private:
 		static Application* s_Instance;

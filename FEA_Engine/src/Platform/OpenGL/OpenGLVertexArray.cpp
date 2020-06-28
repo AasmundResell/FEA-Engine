@@ -16,7 +16,7 @@ namespace FEE {
 			case ShaderDataType::Mat3:		return GL_FLOAT;
 			case ShaderDataType::Mat4:		return GL_FLOAT;
 			case ShaderDataType::Int:		return GL_INT;
-			case ShaderDataType::Float:	return GL_FLOAT;
+			case ShaderDataType::Float:	    return GL_FLOAT;
 			case ShaderDataType::Int2:		return GL_INT;
 			case ShaderDataType::Int3:		return GL_INT;
 			case ShaderDataType::Int4:		return GL_INT;
@@ -48,7 +48,7 @@ namespace FEE {
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer>& vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(Ref<VertexBuffer>& vertexBuffer)
 	{
 		//check that a vertex buffer layout exist
 		FEE_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!");
@@ -71,7 +71,7 @@ namespace FEE {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(std::shared_ptr<IndexBuffer>& indexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(Ref<IndexBuffer>& indexBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

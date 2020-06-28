@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 
 #ifdef FEE_PLATFORM_WINDOWS
 #if FEE_DYNAMIC_LINK
@@ -30,6 +32,17 @@
 
 #define FEE_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
-//defines 1 shifted by x-places, ie BIT(1) is 1
+//defines 1 shifted by x-places, ie. BIT(1) is 1
 //Uses this to define several category types for each instance
 #define BIT(x) (1 << x) 
+
+namespace FEE {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+
+	using Ref = std::shared_ptr<T>;
+
+}

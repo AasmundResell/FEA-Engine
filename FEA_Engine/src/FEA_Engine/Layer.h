@@ -2,6 +2,7 @@
 
 #include "FEA_Engine/Core.h"
 #include "FEA_Engine/Events/Event.h"
+#include "FEA_Engine/Core/Timestep.h"	
 
 namespace FEE {
 
@@ -13,7 +14,7 @@ class FEE_API Layer
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

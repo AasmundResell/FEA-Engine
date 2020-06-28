@@ -36,3 +36,10 @@ namespace FEE {
 #define FEE_INFO(...)          ::FEE::Log::GetClientLogger()->info(__VA_ARGS__)
 #define FEE_TRACE(...)         ::FEE::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define FEE_FATAL(...)         ::FEE::Log::GetClientLogger()->fatal(__VA_ARGS__)
+
+#define SOLVER_ERROR(...)      ::FEE::Log::GetClientLogger()->error(__VA_ARGS__)
+#define SOLVER_WARN(...)       ::FEE::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define SOLVER_INFO(...)       ::FEE::Log::GetClientLogger()->info(__VA_ARGS__)
+#define SOLVER_TRACE(...)      ::FEE::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define SOLVER_FATAL(...)      ::FEE::Log::GetClientLogger()->fatal(__VA_ARGS__)
+

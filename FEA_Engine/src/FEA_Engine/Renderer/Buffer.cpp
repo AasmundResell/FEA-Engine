@@ -1,21 +1,19 @@
 #include "feepch.h"
 
 #include "Buffer.h"
-
 #include "Renderer.h"
-
 #include "Platform/OpenGL/OpenGLBuffer.h"
+#include "RendererAPI.h"
 
 namespace FEE {
 	
-	
-
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None: FEE_CORE_ASSERT(false, "RendererAPI::None is not supported!"); return nullptr;
-			case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::None: FEE_CORE_ASSERT(false, "RendererAPI::None is not supported!");
+			return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		FEE_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -26,8 +24,8 @@ namespace FEE {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None: FEE_CORE_ASSERT(false, "RendererAPI::None is not supported!"); return nullptr;
-			case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::None: FEE_CORE_ASSERT(false, "RendererAPI::None is not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count);
 		}
 
 		FEE_CORE_ASSERT(false, "Unknown Renderer API!");
