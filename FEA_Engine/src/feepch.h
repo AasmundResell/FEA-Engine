@@ -2,13 +2,14 @@
 
 //common stuff
 #include <iostream>
-#include <memory>
+#include <memory> //includes smart pointers
 #include <utility>
 #include <algorithm>
 #include <functional>
 #include <sstream>
 
 //Data structures
+#include <array>
 #include <string>
 #include <vector>
 #include <unordered_map>

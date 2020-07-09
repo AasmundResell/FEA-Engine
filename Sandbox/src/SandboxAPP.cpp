@@ -8,6 +8,8 @@
 
 #include <glm/gtc/type_ptr.hpp>  
 
+#include "FEA_Engine/Renderer/Shader.h"
+
 class ExampleLayer : public FEE::Layer
 {
 public:
@@ -100,9 +102,9 @@ public:
 			}
 		)";
 
-		m_Shader.reset(FEE::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = FEE::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
-		std::string flatShaderVertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 		
 			layout(location = 0) in vec3 a_Position;
@@ -135,49 +137,19 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(FEE::Shader::Create(flatShaderVertexSrc, flatColorShaderFragmentSrc));
-	
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-		
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
+		m_FlatColorShader = FEE::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform; 
 
-			out vec2 v_TexCoord;
-			
-			void main()
-			{
-				v_TexCoord  = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position , 1);
-			}
-		)";
 
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-		
-			layout(location = 0) out vec4 color;
-			
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-			
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(FEE::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_TextureShader = FEE::Shader::Create("assets/shaders/Texture.glsl");
 		m_Texture = FEE::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_ChernoLogoTexture = FEE::Texture2D::Create("assets/textures/logo.png");
+		m_LogoTexture = FEE::Texture2D::Create("assets/textures/logo.png");
 
 		std::dynamic_pointer_cast<FEE::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<FEE::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
+	
 
 	void OnUpdate(FEE::Timestep ts ) override
 	{
@@ -234,7 +206,7 @@ public:
 		m_Texture->Bind();
 		FEE::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-		m_ChernoLogoTexture->Bind();
+		m_LogoTexture->Bind();
 		FEE::Renderer::Submit(m_TextureShader, m_SquareVertexArray,
 			glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
@@ -255,6 +227,7 @@ public:
 
 private:
 
+	FEE::ShaderLibrary m_ShaderLibrary;
 	//drawing triangle
 	FEE::Ref<FEE::Shader> m_Shader;
 	FEE::Ref<FEE::VertexArray> m_VertexArray;
@@ -263,7 +236,7 @@ private:
 	FEE::Ref<FEE::Shader> m_FlatColorShader, m_TextureShader;
 	FEE::Ref<FEE::VertexArray> m_SquareVertexArray;
 
-	FEE::Ref<FEE::Texture2D> m_Texture, m_ChernoLogoTexture ;
+	FEE::Ref<FEE::Texture2D> m_Texture, m_LogoTexture ;
 
 	FEE::OrthoGraphicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

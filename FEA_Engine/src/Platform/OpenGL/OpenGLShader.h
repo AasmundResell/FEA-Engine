@@ -1,15 +1,26 @@
 #pragma once
 
 #include "FEA_Engine/Renderer/Shader.h"
+
+
 #include <glm/glm.hpp>
+
+
+//TODO : remove! 
+typedef unsigned int GLenum;
+
 
 namespace FEE {
 
 	class OpenGLShader : public Shader
 	{
 	public:
-		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+
+		OpenGLShader(const std::string& filePath);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
 		virtual ~OpenGLShader();
+
+		virtual const std::string& GetName() const override { return m_Name; }
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
@@ -24,7 +35,12 @@ namespace FEE {
 		void UploadUniformMat3(const std::string& name, const glm::mat4& matrix);
 		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 	private:
+		std::string ReadFile(const std::string& filePath);
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+		void Compile(std::unordered_map<GLenum, std::string>& shaderSources);
+	private:
 		uint32_t m_RendererID;
+		std::string m_Name;
 
 	};
 
