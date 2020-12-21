@@ -10,3 +10,6 @@
 [submodule "FEA_Engine/vendor/glm"]
 	path = FEA_Engine/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "FEA_Engine/vendor/eigen"]
+	path = FEA_Engine/vendor/eigen
+	url = https://gitlab.com/libeigen/eigen

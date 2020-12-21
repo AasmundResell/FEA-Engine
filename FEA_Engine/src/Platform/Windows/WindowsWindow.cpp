@@ -74,6 +74,7 @@ namespace FEE {
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
+				FEE_CORE_WARN("{0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 

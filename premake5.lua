@@ -18,6 +18,7 @@ IncludeDir["Glad"] = "FEA_Engine/vendor/Glad/include"
 IncludeDir["ImGui"] = "FEA_Engine/vendor/imgui"
 IncludeDir["glm"] = "FEA_Engine/vendor/glm"
 IncludeDir["stb_image"] = "FEA_Engine/vendor/stb_image"
+IncludeDir["eigen"] = "FEA_Engine/vendor/eigen"
 
 group "Dependencies"
     include "FEA_Engine/vendor/GLFW"	
@@ -45,7 +46,9 @@ project "FEA_Engine"
         "%{prj.name}/vendor/stb_image/**.h",
         "%{prj.name}/vendor/stb_image/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
-        "%{prj.name}/vendor/glm/glm/**.inl"
+        "%{prj.name}/vendor/glm/glm/**.inl",
+        "%{prj.name}/vendor/eigen/Eigen/Dense",
+        "%{prj.name}/vendor/eigen/Eigen/Sparse"
     }
 
     defines 
@@ -61,7 +64,8 @@ project "FEA_Engine"
         "%{IncludeDir.Glad}", 
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
-        "%{IncludeDir.stb_image}"
+        "%{IncludeDir.stb_image}",
+        "%{IncludeDir.eigen}"
     }
 
     links
@@ -119,7 +123,8 @@ project "Sandbox"
         "FEA_Engine/vendor/spdlog/include",
         "FEA_Engine/src",
         "FEA_Engine/vendor",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.eigen}"
     }
 
     links
@@ -173,7 +178,8 @@ project "FEA_Solver"
         "FEA_Engine/vendor/spdlog/include",
         "FEA_Engine/src",
         "FEA_Engine/vendor",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.eigen}"
     }
 
     links

@@ -32,6 +32,7 @@ namespace FEE {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e); 
+		bool OnWindowResize(WindowResizeEvent& e);
 		
 		std::unique_ptr<Window> m_Window;
 
@@ -39,6 +40,8 @@ namespace FEE {
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
+		bool m_Minimized = false;
+
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 

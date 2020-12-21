@@ -44,6 +44,7 @@ namespace FEE {
 
 		//tells the dispatcher to close the window if it discover a WindowCloseEvent
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 		
 		//backwards loop to check for events in the layers
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -63,20 +64,23 @@ namespace FEE {
 			float time = (float)glfwGetTime(); 
 			Timestep timestep = time - m_LastFrameTime; //delta time
 			m_LastFrameTime = time;
-			//iterate and update layers in the stack
-			for (Layer* layer : m_LayerStack)
-			{
-				layer->OnUpdate(timestep);
-			}
 
-			//start rendering of the ImGui layer
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimized)
 			{
-				layer->OnImGuiRender();
-			}
-			//end Imgui
-			m_ImGuiLayer->End();
+				//iterate and update layers in the stack
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(timestep);
+				}
+			} 
+				//start rendering of the ImGui layer
+				m_ImGuiLayer->Begin();
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnImGuiRender();
+				}
+				//end Imgui
+				m_ImGuiLayer->End();
 
 			//update the window class
 			m_Window->OnUpdate();
@@ -87,6 +91,20 @@ namespace FEE {
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 
 	void Application::PushLayer(Layer* layer)
